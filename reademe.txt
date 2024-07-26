@@ -1,0 +1,27 @@
+Submitted File:
+1) Images folder contains the images used in the SPA.
+2) hill.js contains the javascript functions for hill cipher encryption and decryption.
+3) index.html is the html file containing forms to enter text for encryption and decryption. It also contains the paragraph
+    explaining the hill cipher.
+4) style.css contains the css of the spa.
+
+Intructions on how to view of use the Submitted files.
+ Visit the sit link given below and click on Hill-Cipher Project folder, it will automatically open the index.html file in the broswer and follow the instructions given. The html file is simple, user friendly
+ and straight forward.
+
+Estimated Mark:
+10/20
+
+Citations of web lookups:
+1) How to find inverse of a matrix:
+https://cutt.ly/mkzj8qQ 
+(April 17, 2017)
+
+3) ModInverse method reference:
+https://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/
+(29 Jan, 2021)
+
+
+Link to sit.cna-qatar.edu.qatar:
+sit.cna-qatar.edu.qa/~60092058
+

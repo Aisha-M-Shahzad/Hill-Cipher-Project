@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="hill.js"></script>
+</head>
+
+<body>
+  <div id="rcorners3">
+      <marquee behavior="alternate"><span class="marquee"><i class="fa fa-lock" style="font-size:24px"></i> Welcome to Hill Cipher Area <i class="fa fa-lock" style="font-size:24px"></i></span></marquee>
+  </div>
+  <div id="main-container">
+    <div class="container">
+      <div class="container1">
+        <div class="text">Encryption</div>
+        <div class="row">
+          <div class="col-25">
+            <div id="first"><label for="message">Message</label></div>
+          </div>
+          <div class="col-75">
+            <input type="text" id="msg" name="msg" placeholder="Enter 3 letter message">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <div id="first"> <label for="key">Key</label></div>
+          </div>
+          <div class="col-75">
+            <input type="text" id="key" name="key" placeholder="Enter 9 letter key">
+            <input type="submit" value="Submit" onclick="main()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <div id="first"> <label for="key">Encrypted Message</label></div>
+          </div>
+          <div class="col-75">
+            <textarea id="result" name="result" placeholder="Encrypted Message Appears Here"
+              style="height:100px"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="container2">
+        <div class="text">Decryption</div>
+        <div class="row">
+          <div class="col-25">
+            <div id="first"><label for="message">Message</label></div>
+          </div>
+          <div class="col-75">
+            <input type="text" id="dmsg" name="dmsg" placeholder="Enter 3 letter message">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <div id="first"> <label for="key">Key</label></div>
+          </div>
+          <div class="col-75">
+            <input type="text" id="dkey" name="dkey" placeholder="Enter 9 letter key">
+            <input type="submit" value="Submit" onclick="decryption()">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <div id="first"> <label for="message">Decrypted Message</label></div>
+          </div>
+          <div class="col-75">
+            <textarea id="resultD" name="resultD" placeholder="Decrypted Message Appears Here"
+              style="height:100px"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container3">
+     
+      <div class="w3-bar w3-black">
+        <button class="w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'Information')">Information</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Encryption')">Encryption</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Decryption')">Decryption</button>
+      </div>
+      
+      <div id="Information" class="w3-container w3-border city">
+        Hill cipher is a polygraphic substitution cipher based on linear algebra.
+        Each letter is represented by a number modulo 26.
+       <b> E.g:- A = 0, B = 1, …, Z = 25 is used.</b>
+       <br>
+       <img src="Images/lock.gif" alt="Girl in a jacket" width="180" height="204" class="center"><br>
+      <b> Two complications exist in picking the encrypting matrix:</b> <br>
+
+        Not all matrices have an inverse. The matrix will have an inverse if and only if its determinant is not zero.
+        The determinant of the encrypting matrix must not have any common factors with the modular base.
+        The determinant must be nonzero, and must not be divisible by 2 or 13. If the determinant is 0, 
+        or has common factors with the modular base, then the matrix cannot be used in the Hill cipher, 
+        and another matrix must be chosen (otherwise it will not be possible to decrypt). 
+
+        So if a user tries to enter a key of which modular inverse is not possible, it will ask the user to enter the key again.
+      </div>
+      <div id="Encryption" class="w3-container w3-border city" style="display:none">
+        To encrypt a message, each block of n letters is multiplied by an invertible n × n matrix, against modulus 26. <br>
+          <b>MSG ---> </b>HAT  (3 letter message) <br>
+          <b>KEY ---> </b>HIJKNUOLP (9 letter key)<br>
+          <b>OUTPUT ---> </b>MIT<br>
+          Here lets change the message into numbers. <br>
+          <b>H = 7, A = 0 and T = 19.</b><br>
+          Similarly, the Key changes to <br>
+          <b> H = 7, I = 8, J = 9, K = 10, N = 13, U = 20, 0 = 14 and L = 11</b><br>
+          <div id="mmain">
+            <b>KEY</b>
+            <table class="matrix">
+                <tr>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>13</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                  <td>14</td>
+                  <td>11</td>
+                  <td>15</td>
+              </tr>
+            </table>
+          <b>MSG</b>
+               <table class="matrix">
+                <tr>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                </tr>
+                <tr>
+                  <td>19</td>
+              </tr>
+            </table>
+          </div> 
+          <div id="mmain">
+            <b>3*3</b> 
+            <table class="matrix">
+               <tr>
+                   <td>7*7 + 8*0 + 9*19</td>
+               </tr>
+               <tr>
+                   <td>10*7 + 13*0 + 20*19</td>
+               </tr>
+               <tr>
+                   <td>14*7 + 11*0 + 15*19</td>
+             </tr>
+           </table>
+           <b>=</b>
+            <table class="matrix">
+                <tr>
+                    <td>220</td>
+                </tr>
+                <tr>
+                    <td>450</td>
+                </tr>
+                <tr>
+                  <td>383</td>
+              </tr>
+            </table>
+          </div>
+          <div id="mmain">
+            <b>Result of 3*3</b>
+            <table class="matrix">
+              <tr>
+                  <td>220</td>
+              </tr>
+              <tr>
+                  <td>450</td>
+              </tr>
+              <tr>
+                <td>383</td>
+            </tr>
+          </table>
+            <b>  % 26 = </b>
+            <table class="matrix">
+                <tr>
+                    <td>12</td> 
+                </tr>
+                <tr>
+                    <td>8</td>
+                </tr>
+                <tr>
+                  <td>19</td>
+              </tr>
+            </table>
+            <table class="matrix">
+              <b>Changes to</b>
+                <tr>
+                    <td>M</td>
+                </tr>
+                <tr>
+                    <td>I</td>
+                </tr>
+                <tr>
+                  <td>T</td>
+              </tr>
+            </table>
+            </div> 
+      </div>
+    
+      <div id="Decryption" class="w3-container w3-border city" style="display:none">
+        To decrypt the message, we turn the ciphertext back into a vector, then simply multiply by the inverse matrix of the key matrix.
+        The inverse of the matrix used in the previous example is:
+        <div id="mmain">
+          <b>CIPHERTEXT VECTOR</b>
+          <table class="matrix">
+              <tr>
+                  <td>M = 12</td>
+              </tr>
+              <tr>
+                  <td>I = 8</td>
+              </tr>
+              <tr>
+                <td>T = 19</td>
+            </tr>
+          </table>
+        </div>
+        <div id="mmain">
+          <b>KEY = </b>
+          <table class="matrix">
+              <tr>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9</td>
+              </tr>
+              <tr>
+                  <td>10</td>
+                  <td>13</td>
+                  <td>20</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>11</td>
+                <td>15</td>
+            </tr>
+          </table>
+          <b>INVERSE OF KEY = </b>
+          <table class="matrix">
+              <tr>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9</td>
+              </tr>
+              <tr>
+                  <td>10</td>
+                  <td>13</td>
+                  <td>20</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>11</td>
+                <td>15</td>
+            </tr>
+          </table>
+          </div>
+          <div id="mmain">
+            <b>Key Inverse mod 26</b>
+            <table class="matrix">
+              <tr>
+                  <td>3</td>
+                  <td>15</td>
+                  <td>25</td>
+              </tr>
+              <tr>
+                  <td>0</td>
+                  <td>15</td>
+                  <td>6</td>
+              </tr>
+              <tr>
+                <td>18</td>
+                <td>1</td>
+                <td>7</td>
+            </tr>
+          </table>
+          </div>
+          <div id="mmain">
+            <b></b>
+            <table class="matrix">
+              <tr>
+                  <td>3</td>
+                  <td>15</td>
+                  <td>25</td>
+              </tr>
+              <tr>
+                  <td>0</td>
+                  <td>15</td>
+                  <td>6</td>
+              </tr>
+              <tr>
+                <td>18</td>
+                <td>1</td>
+                <td>7</td>
+            </tr>
+          </table>
+          <table class="matrix">
+            <b>cipher text vector</b>
+            <tr>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>8</td>
+            </tr>
+            <tr>
+              <td>19</td>
+          </tr>
+        </table>
+        <b>=</b>
+        <table class="matrix">
+          <tr>
+              <td>631</td>
+          </tr>
+          <tr>
+              <td>234</td>
+          </tr>
+          <tr>
+            <td>357</td>
+        </tr>
+      </table>
+          </div>
+          <div id="mmain">
+            <table class="matrix">
+              <tr>
+                  <td>631</td>
+              </tr>
+              <tr>
+                  <td>234</td>
+              </tr>
+              <tr>
+                <td>357</td>
+            </tr>
+          </table>
+          <table class="matrix">
+            <b>mod 26</b>
+            <tr>
+                <td>7 = H</td>
+            </tr>
+            <tr>
+                <td>0 = A</td>
+            </tr>
+            <tr>
+              <td>19 = T</td>
+          </tr>
+        </table>
+          </div>
+      </div>
+    </div>
+    
+</div> 
+</body>
+
+</html>
